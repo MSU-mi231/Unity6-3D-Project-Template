@@ -1,6 +1,6 @@
 # **Replace this Project Name** - ReadMe File
 
-#### Author: *Replace this with your name*
+#### Author: *Jeremy Bond*
 
 ##### Modified: *2024-06-14*
 
@@ -26,7 +26,7 @@
 **3. Any assets used that you didn't create yourself?**   
 
 > &nbsp;
-><i>(art, music, etc. Just tell us where you got it, link it here)</i>   
+>I got the icon at the top from Bing.com Dall-E.   
 > &nbsp;
  
 

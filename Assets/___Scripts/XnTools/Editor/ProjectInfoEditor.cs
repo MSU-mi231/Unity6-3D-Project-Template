@@ -190,7 +190,7 @@ public class ProjectInfoEditor : Editor {
 
 	}
 
-	private const bool   DEBUG_MARKDOWN_EXPORT = true;
+	private const bool   DEBUG_MARKDOWN_EXPORT = false;
 	private const string FILE_SEPARATOR        = "\n---\n";
 	private const string FILE_SEPARATOR_CRLF        = "\r\n---\r\n"; 
 	void ExportReadMeMarkDown( ProjectInfo_SO pInfo ) {
