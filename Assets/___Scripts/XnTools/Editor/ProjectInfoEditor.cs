@@ -1,5 +1,6 @@
 ﻿// Original file was created by Unity.com
 // Small modifications to allow \n \t in text by Jeremy G. Bond <jeremy@exninja.com>
+// Additional modifications by Jeremy Bond to edit ReadMe files for MI231 at Michigan State University
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,14 +91,26 @@ public class ProjectInfoEditor : Editor {
 				}
 				GUILayout.FlexibleSpace();
 				GUILayout.Label($"<b>Author:</b> {pInfo.author}", SubTitleStyle );
+				GUILayout.Label($"<b>Modified:</b> {pInfo.modificationDate}", SubTitleStyle );
 				
 				if (pInfo.showReadMeEditor) {
 					if ( GUILayout.Button( "Finish Editing This ReadMe" ) ) {
 						pInfo.showReadMeEditor = false;
+						if ( EditorUtility.DisplayDialog( "Update Your Git Repo's ReadMe.md file?",
+							    "By default, when you finish editing this __ReadMe__ file, the editor" +
+							    " also updates the README.md MarkDown file that you see in GitHub and GitLab." +
+							    " When doing so, it prepends the default Unity Template README.md with" +
+							    " the ReadMe in this __ReadMe__ asset. This cannot be undone.",
+							    "Yes, Update ReadMe.md", "Cancel" ) ) {
+							// Undo.RecordObjects(pInfo, "Reset ReadMe to Defaults");
+							ExportReadMeMarkDown(pInfo);
+						}
 					}
 				} else {
 					if ( GUILayout.Button( "Edit This ReadMe File" ) ) {
 						pInfo.showReadMeEditor = true;
+						// Update the date
+						pInfo.modificationDate = ProjectInfo_SO.currentDate;
 					}
 				}
 			}
@@ -123,6 +136,14 @@ public class ProjectInfoEditor : Editor {
 		// }
 
 		if (pInfo.showReadMeEditor) {
+			
+			GUILayout.Label( "<b>ReadMe Editing Area</b>", HeadingStyle );
+			GUILayout.Label( "<i>You can see a preview of what each section will look like below this editor.\n" +
+			                 "Edit the <b>Sections</b> below to answer required questions.</i>", BodyStyle );
+			GUILayout.Space(10);
+			DrawDefaultInspector();
+			GUILayout.Space(20);
+			
 			GUILayout.Label( "<b>Button Actions</b>", HeadingStyle );
 			if ( GUILayout.Button( "Export Info to ReadMe.md File for Git" ) ) {
 				if ( EditorUtility.DisplayDialog( "Are you sure you want to replace the ReadMe.md file?",
@@ -143,12 +164,7 @@ public class ProjectInfoEditor : Editor {
 				}
 			}
 			GUILayout.Space(20);
-			GUILayout.Label( "<b>ReadMe Editing Area</b>", HeadingStyle );
-			GUILayout.Label( "<i>You can see a preview of what each section will look like below this editor.\n" +
-			                 "Edit the <b>Sections</b> below to answer required questions.</i>", BodyStyle );
-			GUILayout.Space(10);
-			DrawDefaultInspector();
-			GUILayout.Space(10);
+			
 			GUILayout.Label( "<b>ReadMe Preview Area</b>", HeadingStyle );
 			GUILayout.Space(10);
 		}
@@ -174,9 +190,41 @@ public class ProjectInfoEditor : Editor {
 
 	}
 
+	private const bool   DEBUG_MARKDOWN_EXPORT = true;
+	private const string FILE_SEPARATOR        = "\n---\n";
+	private const string FILE_SEPARATOR_CRLF        = "\r\n---\r\n"; 
 	void ExportReadMeMarkDown( ProjectInfo_SO pInfo ) {
 		string mdText = pInfo.ToMarkDownString();
-		Debug.Log( mdText );
+		if (DEBUG_MARKDOWN_EXPORT) Debug.LogWarning( mdText );
+		
+		// Import the existing README.md file, if it exists
+		string path = "README.md"; // This is at the root level of the Unity project
+		string fileText;
+		bool useCRLF = false;
+		if ( File.Exists( path ) ) {
+			StreamReader reader = new StreamReader( path );
+			fileText = reader.ReadToEnd();
+			reader.Close();
+			
+			// Attempt to prepend the file by replacing the first few lines
+			int ndx = fileText.IndexOf( FILE_SEPARATOR );
+			if ( ndx == -1 ) {
+				ndx = fileText.IndexOf( FILE_SEPARATOR_CRLF );
+			}
+			if ( ndx > 0 ) {
+				fileText = fileText.Substring( ndx );
+			}
+			fileText = mdText + "\n" + fileText;
+			if (DEBUG_MARKDOWN_EXPORT) Debug.LogWarning( fileText );
+		} else {
+			useCRLF = ( Environment.NewLine == "\r\n" );
+			fileText = mdText + "\n" + ( useCRLF ? FILE_SEPARATOR_CRLF : FILE_SEPARATOR );
+		}
+
+		using (StreamWriter writer = new StreamWriter( path, false )) {
+			writer.Write( fileText );
+			writer.Close();
+		}
 	}
 
 	string ReplaceTabsAndNewLines( string sIn ) {

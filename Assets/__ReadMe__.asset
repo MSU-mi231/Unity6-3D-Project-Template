@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: decd15f39376a174aaf84e6a0d9f7ef9, type: 3}
   iconMaxWidth: 128
-  projectName: 'Replace this Project Name
-
-    <i>(e.g. Apple Picker)</i>'
+  projectName: Replace this Project Name
   author: Replace this with your name
   modificationDate: 2024-06-14
   sections:

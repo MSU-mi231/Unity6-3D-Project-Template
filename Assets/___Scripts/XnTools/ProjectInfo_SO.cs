@@ -12,9 +12,9 @@ public class ProjectInfo_SO : ScriptableObject {
 	public float iconMaxWidth = 128f;
 
 	[TextArea( 1, 10 )]
-	public string projectName      = "Replace this Project Name\n<i>(e.g. Apple Picker)</i>";
+	public string projectName      = "Replace this Project Name";
 	public string author           = "Replace this with your name";
-	public string modificationDate = "2024-06-14";
+	public string modificationDate = currentDate;
 
 	public Section[] sections = readMeDefaultSections;
 	
@@ -37,65 +37,74 @@ public class ProjectInfo_SO : ScriptableObject {
 		
 		return sb.ToString();
 	}
-	
-	static private Section[] readMeDefaultSections {
-			get {
-				List<Section> sections = new List<Section>();
-				Section sec;
-				
-				// Controls
-				sec = new Section();
-				sec.heading = "1. What are the controls to your game? How do we play?";
-				sec.text = "<i>(art, music, etc. Just tell us where you got it, link it here)</i>";
-				sections.Add( sec );
-				
-				// Creative Additions
-				sec = new Section();
-				sec.heading = "2. What creative additions did you make? How can we find them?";
-				sec.text = "<i>(If you don't tell us how to experience them, we could easily miss them.)</i>";
-				sections.Add( sec );
-				
-				// Assets
-				sec = new Section();
-				sec.heading = "3. Any assets used that you didn't create yourself?";
-				sec.text = "<i>(art, music, etc. Just tell us where you got it, link it here)</i>";
-				sections.Add( sec );
-				
-				// Help - Person
-				sec = new Section();
-				sec.heading = "4. Did you receive help from anyone outside this class?";
-				sec.text = "<i>(list their names and what they helped with)</i>";
-				sections.Add( sec );
-				
-				// Help - AI Assistants
-				sec = new Section();
-				sec.heading = "5. Did you get help from any AI Code Assistants?";
-				sec.text = "<i>(Including things like Chat-GPT, Copilot, etc. Tell us which .cs file" +
-				           " to look in for the citation and describe what you learned)</i>";
-				sections.Add( sec );
-				
-				// Help - Websites and Tutorials
-				sec = new Section();
-				sec.heading = "6. Did you get help from any online websites, videos, or tutorials?";
-				sec.text = "<i>(link them here)</i>";
-				sections.Add( sec );
-				
-				// Trouble
-				sec = new Section();
-				sec.heading = "7. What trouble did you have with this project?";
-				sec.text = "<i>(Even if you didn't complete the project, you can still get partial" +
-				           " credit if you tell us about why it's incomplete.)</i>";
-				sections.Add( sec );
-				
-				// Anything Else
-				sec = new Section();
-				sec.heading = "8. Is there anything else we should know?";
-				sections.Add( sec );
 
-				return sections.ToArray();
-			}
+	static public string currentDate {
+		get {
+			// Update the date
+			DateTime now = DateTime.Now;
+			return$"{now.Year:0000}-{now.Month:00}-{now.Day:00}";
 		}
-	
+	}
+
+	static private Section[] readMeDefaultSections {
+		get {
+			List<Section> sections = new List<Section>();
+			Section sec;
+
+			// Controls
+			sec = new Section();
+			sec.heading = "1. What are the controls to your game? How do we play?";
+			sec.text = "<i>(art, music, etc. Just tell us where you got it, link it here)</i>";
+			sections.Add( sec );
+
+			// Creative Additions
+			sec = new Section();
+			sec.heading = "2. What creative additions did you make? How can we find them?";
+			sec.text = "<i>(If you don't tell us how to experience them, we could easily miss them.)</i>";
+			sections.Add( sec );
+
+			// Assets
+			sec = new Section();
+			sec.heading = "3. Any assets used that you didn't create yourself?";
+			sec.text = "<i>(art, music, etc. Just tell us where you got it, link it here)</i>";
+			sections.Add( sec );
+
+			// Help - Person
+			sec = new Section();
+			sec.heading = "4. Did you receive help from anyone outside this class?";
+			sec.text = "<i>(list their names and what they helped with)</i>";
+			sections.Add( sec );
+
+			// Help - AI Assistants
+			sec = new Section();
+			sec.heading = "5. Did you get help from any AI Code Assistants?";
+			sec.text = "<i>(Including things like Chat-GPT, Copilot, etc. Tell us which .cs file" +
+			           " to look in for the citation and describe what you learned)</i>";
+			sections.Add( sec );
+
+			// Help - Websites and Tutorials
+			sec = new Section();
+			sec.heading = "6. Did you get help from any online websites, videos, or tutorials?";
+			sec.text = "<i>(link them here)</i>";
+			sections.Add( sec );
+
+			// Trouble
+			sec = new Section();
+			sec.heading = "7. What trouble did you have with this project?";
+			sec.text = "<i>(Even if you didn't complete the project, you can still get partial" +
+			           " credit if you tell us about why it's incomplete.)</i>";
+			sections.Add( sec );
+
+			// Anything Else
+			sec = new Section();
+			sec.heading = "8. Is there anything else we should know?";
+			sections.Add( sec );
+
+			return sections.ToArray();
+		}
+	}
+
+
 	[Serializable]
 	public class Section {
 		[TextArea(1,10)]
