@@ -1,4 +1,6 @@
-﻿// Original file was created by Unity.com
+﻿// #define DEBUG_MARKDOWN_EXPORT
+
+// Original file was created by Unity.com
 // Small modifications to allow \n \t in text by Jeremy G. Bond <jeremy@exninja.com>
 // Additional modifications by Jeremy Bond to edit ReadMe files for MI231 at Michigan State University
 using System.Collections;
@@ -145,15 +147,15 @@ public class ProjectInfoEditor : Editor {
 			GUILayout.Space(20);
 			
 			GUILayout.Label( "<b>Button Actions</b>", HeadingStyle );
-			if ( GUILayout.Button( "Export Info to ReadMe.md File for Git" ) ) {
-				if ( EditorUtility.DisplayDialog( "Are you sure you want to replace the ReadMe.md file?",
-					    "This will replace the ReadMe.md MarkDown file that you see in GitHub and GitLab" +
-					    " with information from this file. This cannot be undone.",
-					    "Yes, Replace ReadMe.md", "Cancel" ) ) {
-					// Undo.RecordObjects(pInfo, "Reset ReadMe to Defaults");
-					ExportReadMeMarkDown(pInfo);
-				}
-			}
+			// if ( GUILayout.Button( "Export Info to ReadMe.md File for Git" ) ) {
+			// 	if ( EditorUtility.DisplayDialog( "Are you sure you want to replace the ReadMe.md file?",
+			// 		    "This will replace the ReadMe.md MarkDown file that you see in GitHub and GitLab" +
+			// 		    " with information from this file. This cannot be undone.",
+			// 		    "Yes, Replace ReadMe.md", "Cancel" ) ) {
+			// 		// Undo.RecordObjects(pInfo, "Reset ReadMe to Defaults");
+			// 		ExportReadMeMarkDown(pInfo);
+			// 	}
+			// }
 			if ( GUILayout.Button( "Reset ReadMe to Defaults" ) ) {
 				if ( EditorUtility.DisplayDialog( "Reset ReadMe to Defaults?",
 					    "Are you sure you want to reset this ReadMe file to the default values for" +
@@ -190,12 +192,14 @@ public class ProjectInfoEditor : Editor {
 
 	}
 
-	private const bool   DEBUG_MARKDOWN_EXPORT = false;
+	// private const bool   DEBUG_MARKDOWN_EXPORT = false;
 	private const string FILE_SEPARATOR        = "\n---\n";
 	private const string FILE_SEPARATOR_CRLF        = "\r\n---\r\n"; 
 	void ExportReadMeMarkDown( ProjectInfo_SO pInfo ) {
 		string mdText = pInfo.ToMarkDownString();
-		if (DEBUG_MARKDOWN_EXPORT) Debug.LogWarning( mdText );
+#if DEBUG_MARKDOWN_EXPORT
+		Debug.LogWarning( mdText );
+#endif
 		
 		// Import the existing README.md file, if it exists
 		string path = "README.md"; // This is at the root level of the Unity project
@@ -215,7 +219,9 @@ public class ProjectInfoEditor : Editor {
 				fileText = fileText.Substring( ndx );
 			}
 			fileText = mdText + "\n" + fileText;
-			if (DEBUG_MARKDOWN_EXPORT) Debug.LogWarning( fileText );
+#if DEBUG_MARKDOWN_EXPORT
+			Debug.LogWarning( fileText );
+#endif
 		} else {
 			useCRLF = ( Environment.NewLine == "\r\n" );
 			fileText = mdText + "\n" + ( useCRLF ? FILE_SEPARATOR_CRLF : FILE_SEPARATOR );

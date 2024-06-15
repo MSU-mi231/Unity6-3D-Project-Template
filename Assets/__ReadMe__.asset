@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 2800000, guid: decd15f39376a174aaf84e6a0d9f7ef9, type: 3}
   iconMaxWidth: 128
   projectName: Replace this Project Name
-  author: Replace this with your name
+  author: Jeremy Bond
   modificationDate: 2024-06-14
   sections:
   - heading: 1. What are the controls to your game? How do we play?
@@ -27,7 +27,7 @@ MonoBehaviour:
     linkText: 
     url: 
   - heading: 3. Any assets used that you didn't create yourself?
-    text: <i>(art, music, etc. Just tell us where you got it, link it here)</i>
+    text: I got the icon at the top from Bing.com Dall-E.
     linkText: 
     url: 
   - heading: 4. Did you receive help from anyone outside this class?
@@ -51,4 +51,4 @@ MonoBehaviour:
     text: 
     linkText: 
     url: 
-  showReadMeEditor: 0
+  showReadMeEditor: 1
