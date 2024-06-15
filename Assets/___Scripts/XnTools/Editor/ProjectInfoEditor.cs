@@ -45,7 +45,7 @@ public class ProjectInfoEditor : Editor {
 	// 	method.Invoke( null, new object[] { Path.Combine( Application.dataPath, "TutorialInfo/Layout.wlt" ), false } );
 	// }
 
-	[MenuItem( ProjectMenuHeader+"/Show ProjectInfo", false, 1 )]
+	[MenuItem( ProjectMenuHeader+"/Show Project ReadMe", false, 1 )]
 	static ProjectInfo_SO SelectProjectInfo() {
 		var ids = AssetDatabase.FindAssets( "t:ProjectInfo_SO" );
 		if ( ids.Length == 1 ) {
@@ -162,7 +162,7 @@ public class ProjectInfoEditor : Editor {
 					    " MI 231 projects? This cannot be undone.",
 					    "Yes, Reset It", "Cancel" ) ) {
 					// Undo.RecordObjects(pInfo, "Reset ReadMe to Defaults");
-					pInfo.ResetSectionsToDefault();
+					pInfo.ResetReadMeToDefault();
 				}
 			}
 			GUILayout.Space(20);

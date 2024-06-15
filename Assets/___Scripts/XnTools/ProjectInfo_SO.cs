@@ -21,7 +21,10 @@ public class ProjectInfo_SO : ScriptableObject {
 	[HideInInspector]
 	public bool showReadMeEditor = false;
 
-	public void ResetSectionsToDefault() {
+	public void ResetReadMeToDefault() {
+		projectName = "Replace this Project Name";
+		author = "Replace this with your name";
+		modificationDate = currentDate;
 		sections = readMeDefaultSections;
 	}
 
