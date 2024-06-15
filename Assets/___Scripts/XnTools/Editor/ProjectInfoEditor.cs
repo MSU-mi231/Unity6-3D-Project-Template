@@ -67,7 +67,7 @@ public class ProjectInfoEditor : Editor {
 	/// Adds an "Edit..." item to the context menu for InfoComponent
 	/// </summary>
 	/// <param name="command"></param>
-	[MenuItem("CONTEXT/ProjectInfo/Edit Project Info...")]
+	[MenuItem("CONTEXT/ProjectInfo_SO/Edit ReadMe Info...")]
 	static void EnableEdit(MenuCommand command)
 	{
 		ProjectInfo_SO info = (ProjectInfo_SO)command.context;

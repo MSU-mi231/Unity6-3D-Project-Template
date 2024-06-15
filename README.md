@@ -1,3 +1,78 @@
+# **Check this out!** - ReadMe File
+
+#### Author: *Jeremy Bond*
+
+##### Modified: *2024-06-14*
+
+
+<br>
+
+**1. What are the controls to your game? How do we play?**   
+
+> &nbsp;
+><i>(art, music, etc. Just tell us where you got it, link it here)</i>   
+> &nbsp;
+ 
+
+
+**2. What creative additions did you make? How can we find them?**   
+
+> &nbsp;
+><i>(If you don't tell us how to experience them, we could easily miss them.)</i>   
+> &nbsp;
+ 
+
+
+**3. Any assets used that you didn't create yourself?**   
+
+> &nbsp;
+><i>(art, music, etc. Just tell us where you got it, link it here)</i>   
+> &nbsp;
+ 
+
+
+**4. Did you receive help from anyone outside this class?**   
+
+> &nbsp;
+><i>(list their names and what they helped with)</i>   
+> &nbsp;
+ 
+
+
+**5. Did you get help from any AI Code Assistants?**   
+
+> &nbsp;
+>Yes, I used Bing.com Dall-E to make the icon for the Read Me.   
+> &nbsp;
+ 
+
+
+**6. Did you get help from any online websites, videos, or tutorials?**   
+
+> &nbsp;
+>YouTube is always helpful.   
+>[YouTube Link](https://youtube.com)
+> &nbsp;
+ 
+
+
+**7. What trouble did you have with this project?**   
+
+> &nbsp;
+><i>(Even if you didn't complete the project, you can still get partial credit if you tell us about why it's incomplete.)</i>   
+> &nbsp;
+ 
+
+
+**8. Is there anything else we should know?**   
+
+> &nbsp;
+>*No answer given.*
+> &nbsp;
+ 
+
+
+
 
 ---
 
